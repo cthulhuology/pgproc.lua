@@ -148,7 +148,6 @@ function pg.bind(schema)
 			local query = "select * from  " .. schema .. "." .. proc .. "('"
 			return function(...)	
 				local Q  = query .. table.concat({...},"','") .."')"
-				print (Q)
 				local rows = pg.query(Q)
 				local R = {}
 				local k,j = 0,0
@@ -156,7 +155,6 @@ function pg.bind(schema)
 					while j < pg.fields() do
 						local key = pg.field(j)
 						local value = pg.fetch(k,j)
-						print(key .. " => " .. value)
 						R[key] = value
 						j = j+1
 					end
